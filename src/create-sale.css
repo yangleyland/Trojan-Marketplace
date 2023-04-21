@@ -1,0 +1,75 @@
+.v1_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-left: 20px;
+    margin: 0 auto;
+    width: 700px;
+    height: 600px;
+  }
+
+  .logo {
+    max-width: 50%;
+    height: auto;
+    margin-right: 10px;
+  }
+
+  .marketplace {
+    padding-left: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Lato", sans-serif;
+  }
+
+  form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  label {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  input[type="text"],
+  textarea {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 5px;
+    resize: none;
+    font-family: "Lato", sans-serif;
+  }
+
+  input[type="file"] {
+    margin-top: 10px;
+  }
+
+  button {
+    margin-top: 20px;
+    background-color: #cc0000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Lato", sans-serif;
+  }
+
+  button:hover {
+    background-color: #e60000;
+  }
+  input{
+    width: 70%;
+  }
+  textarea{
+    width: 70%;
+  }

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledProfile = styled.div`
   background-color: white;
+  margin-top: 30px;
 `;
 
 function Profile() {
@@ -55,7 +56,9 @@ function Profile() {
     </StyledProfile>
   );
 }
-const ProfilePicDiv = styled.div``;
+const ProfilePicDiv = styled.div`
+
+`;
 const RatingDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -155,8 +158,8 @@ const RedText = styled.p`
 `;
 const CircularImage = styled.img`
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
 `;
 const ItemImage = styled.img`
