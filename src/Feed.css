@@ -1,0 +1,52 @@
+/* Set the height of the body and html to 100% to make sure the page fills the entire viewport */
+body, html {
+  height: 100%;
+  background-color: pink;
+}
+
+/* Style for the rectangles */
+.rectangle {
+  background-color: lightgray;
+  width: 600px;
+  height: 300px;
+  margin: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style for the container of rectangles */
+.rectangles-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* center the rectangles vertically */
+}
+
+/* Align the rectangles to the center of the page */
+.rectangles-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Style for the image inside the rectangle */
+.rectangle img {
+  width: 175px;
+  height: 175px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.buy-now-button {
+  background-color: maroon;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
