@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate,Link } from "react-router-dom";
+import styled from "styled-components";
+import { useNavigate, Link } from "react-router-dom";
 
-const StyledLogin = styled.div`
+const StyledCreateAccount = styled.div`
   body {
     font-family: "Lato", sans-serif;
     background-color: #f5f5f5;
@@ -46,7 +46,15 @@ const StyledLogin = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
-
+  input[type="text"] {
+    font-size: 18px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
   input[type="submit"] {
     background-color: #4caf50;
     color: white;
@@ -66,49 +74,59 @@ const StyledLogin = styled.div`
   }
 `;
 
-function Login() {
+function CreateAccount() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     try {
       const response = await axios.post(
-        "http://localhost:8080/Final_Project/LoginServlet",`username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+        "http://localhost:8080/Final_Project/CreateAccountServlet",
+        `username=${encodeURIComponent(username)}&password=${encodeURIComponent(
+          password
+        )}`,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
         }
       );
-      
-    console.log(response.data);
-      if (response.data===true) {
-        navigate("/");
+
+      console.log(response.data);
+      if (response.data === true) {
+        navigate("/login");
         console.log("true");
       } else {
-        setError("Invalid username or password");
+        // setError("Invalid username or password");
         console.log("false");
       }
     } catch (error) {
       console.error("Error during login request:", error);
-      setError("An error occurred. Please try again.");
+      //   setError("An error occurred. Please try again.");
     }
   };
 
   return (
-    <StyledLogin>
+    <StyledCreateAccount>
       <div className="container">
         <img
           className="logo"
           src="https://identity.usc.edu/wp-content/uploads/2022/09/PrimaryMonogram.png"
           alt="USC logo"
         />
-        <h1>Login to Marketplace</h1>
+        <h1>Create Marketplace Account</h1>
         <form onSubmit={handleSubmit}>
+          <label for="name">Name</label>
+          <input
+            // onChange={(e) => setUsername(e.target.value)}
+            // value={username}
+            type="text"
+            id="name"
+            name="name"
+            required
+          />
           <label for="email">Email</label>
           <input
             onChange={(e) => setUsername(e.target.value)}
@@ -127,13 +145,14 @@ function Login() {
             name="password"
             required
           />
-            <p style={{width: "100%", textAlign:"left"}}>No Account? <Link to="/create-account">Create Account</Link></p>
-          <input type="submit" value="Log In" />
-          {error && <p style={{color: "red"}}>{error}</p>}
+          <p style={{ width: "100%", textAlign: "left" }}>
+            Already have an account? <Link to="/create-account">Log In</Link>
+          </p>
+          <input type="submit" value="Create Account" />
         </form>
-        
       </div>
-    </StyledLogin>
+    </StyledCreateAccount>
   );
 }
-export default Login;
+
+export default CreateAccount;
