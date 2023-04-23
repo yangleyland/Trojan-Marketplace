@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const StyledLogin = styled.div`
   body {
@@ -65,6 +67,38 @@ const StyledLogin = styled.div`
 `;
 
 function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/Final_Project/LoginServlet",`username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+      
+    console.log(response.data);
+      if (response.data===true) {
+        navigate("/");
+        console.log("true");
+      } else {
+        setError("Invalid username or password");
+        console.log("false");
+      }
+    } catch (error) {
+      console.error("Error during login request:", error);
+      setError("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <StyledLogin>
       <div className="container">
@@ -74,14 +108,30 @@ function Login() {
           alt="USC logo"
         />
         <h1>Login to Marketplace</h1>
-        <form action="" method="POST">
+        <form onSubmit={handleSubmit}>
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <input
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            type="email"
+            id="email"
+            name="email"
+            required
+          />
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" required />
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            type="password"
+            id="password"
+            name="password"
+            required
+          />
 
           <input type="submit" value="Log In" />
+          {error && <p style={{color: "red"}}>{error}</p>}
         </form>
+        
       </div>
     </StyledLogin>
   );

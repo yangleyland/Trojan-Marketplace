@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledProfile = styled.div`
-  background-color: white;
   margin-top: 30px;
 `;
 
