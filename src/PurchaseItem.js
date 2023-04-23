@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import styled from "styled-components"
+import styled from "styled-components";
 
 const StyledPurchaseItem = styled.div`
-    background-color: white;
-    margin-top: 30px;
+  background-color: white;
+  margin-top: 30px;
 `;
 
 const PurchaseForm = styled.form`
@@ -59,12 +59,12 @@ const InfoDiv = styled.div`
 const PurchaseBanner = styled.div`
   font-size: 1.4em;
   font-weight: 600;
-  background-color: #EFD465;
+  background-color: #efd465;
   display: flow-root;
   margin-top: 5px;
   color: black;
   padding: 8px 16px;
-  text-align: center; 
+  text-align: center;
 `;
 const InfoContainer = styled.div`
   padding: 10px;
@@ -75,69 +75,65 @@ const InfoContainer = styled.div`
 `;
 
 const CashAppButton = styled.div`
-    background-color: #F9D440;
-    margin-top: 5px;
-    color: black;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold; 
-    text-align: center; 
+  background-color: #f9d440;
+  margin-top: 5px;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
 `;
 
 const PayPalButton = styled.div`
-    background-color: #F9D440;
-    margin-top: 5px;
-    color: black;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold; 
-    text-align: center; 
+  background-color: #f9d440;
+  margin-top: 5px;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
 `;
 
 const PickupInfoContainer = styled.div`
-    padding: 10px;
-    height: 100px;
-    background-color: white;
-    display: inline-flex;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    justify-content: space-evenly;
-
+  padding: 10px;
+  height: 100px;
+  background-color: white;
+  display: inline-flex;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-evenly;
 `;
 
-
-function PurchaseItem () {
-    return(
-        <StyledPurchaseItem>
-            <OuterContainer>
-                <PurchaseBanner> Purchase </PurchaseBanner>
+function PurchaseItem({item}) {
+  console.log(item);
+  return (
+    <StyledPurchaseItem>
+      <OuterContainer>
+        <PurchaseBanner> Purchase </PurchaseBanner>
         <InfoContainer>
           <div style={{ display: "flex", gap: "20px" }}>
-            <SquareImage src={"/v3_87.png"} alt="couch" />
+            <SquareImage src={item.image_url} alt="couch" />
             <InfoDiv>
-              <NameText>Couch - $200</NameText>
-              <SubText>Used couch, great condition</SubText>
+              <NameText>{item.item_description} - ${item.price}</NameText>
+              <SubText>{item.item_description}</SubText>
               <SubText>Seller: Tommy T</SubText>
             </InfoDiv>
           </div>
         </InfoContainer>
         <PickupInfoContainer>
-        <PickUpText>Pickup Location </PickUpText>
-        <SubText> 0.2 miles from USC</SubText>
-        <PickUpText>Pickup Time </PickUpText>
-        <SubText> Mar.29, 2023- 7 P.M. </SubText>
+          <PickUpText>Pickup Location </PickUpText>
+          <SubText> 0.2 miles from USC</SubText>
+          <PickUpText>Pickup Time </PickUpText>
+          <SubText> Mar.29, 2023- 7 P.M. </SubText>
         </PickupInfoContainer>
-        <PurchaseForm>
-        </PurchaseForm>
+        <PurchaseForm></PurchaseForm>
         <SubText>Buy Now: </SubText>
-        <CashAppButton type = "submit"> $CashApp </CashAppButton>
-        <PayPalButton type = "submit"> PayPal </PayPalButton>
+        <CashAppButton type="submit"> $CashApp </CashAppButton>
+        <PayPalButton type="submit"> PayPal </PayPalButton>
       </OuterContainer>
-        </StyledPurchaseItem>
-        
-    )
-
+    </StyledPurchaseItem>
+  );
 }
 export default PurchaseItem;

@@ -11,6 +11,12 @@ import CreateSale from "./CreateSale"
 import PurchaseItem from "./PurchaseItem"
 
 const Main = (props) => {
+
+    const [purchaseItem,setPurchaseItem] = useState({});
+    function modifyItem (item) {
+        setPurchaseItem(item);
+    }
+
     return (
   <StyledMain>
     <Navbar></Navbar>
@@ -40,7 +46,7 @@ const Main = (props) => {
         exact
         path="/feed"
         element={
-          <Feed/>
+          <Feed modifyItem={modifyItem}/>
         }
       ></Route>
       <Route
@@ -61,7 +67,7 @@ const Main = (props) => {
         exact
         path="/purchase-item"
         element={
-          <PurchaseItem/>
+          <PurchaseItem item={purchaseItem}/>
         }
       ></Route>
     </Routes>

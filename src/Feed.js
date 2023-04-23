@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Feed.css";
+import { useNavigate } from "react-router-dom";
 
-function Feed() {
+function Feed({modifyItem}) {
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,10 +22,14 @@ function Feed() {
     fetchData();
   }, []);
 
+  function handlePurchase(index){
+    modifyItem(items[index])
+    navigate("/purchase-item");
+  }
   return (
     <div className="rectangles-wrapper">
       <div className="rectangles-container">
-        {items.map((item) => (
+        {items.map((item,index) => (
           <div className="rectangle">
             <div className="rectangle-content">
               <div className="rectangle-img">
@@ -35,7 +41,7 @@ function Feed() {
               </div>
             </div>
             <div className="buy-now-btn">
-              <button>Buy Now</button>
+              <button onClick={()=>handlePurchase(index)}>Buy Now</button>
             </div>
           </div>
         ))}
