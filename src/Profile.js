@@ -153,7 +153,12 @@ const MoneyText = styled.p`
 `;
 const RedText = styled.p`
   color: red;
-  font-size: 0.3em;
+  font-size: 1em;
+  :hover{
+    color:darkred;
+  }
+  position: relative;
+  bottom: 10px;
 `;
 const CircularImage = styled.img`
   border-radius: 50%;

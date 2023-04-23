@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const StyledPurchaseItem = styled.div`
-  background-color: white;
   margin-top: 30px;
 `;
 

@@ -1,7 +1,11 @@
 /* Set the height of the body and html to 100% to make sure the page fills the entire viewport */
-body, html {
+body,
+html {
   height: 100%;
-  background-color: pink;
+  height: 100%;
+  /* background-image: url(https://pbs.twimg.com/media/EU8GlrJWsAAZKHx?format=jpg&name=large);
+  background-size: cover;
+  background-attachment: fixed; */
 }
 
 /* Style for the rectangles */
@@ -14,6 +18,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 20px;
 }
 
 /* Style for the container of rectangles */
@@ -40,7 +45,15 @@ body, html {
   border-radius: 10px;
   margin-right: 20px;
 }
-
+.message-seller-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
 .buy-now-button {
   background-color: maroon;
   color: white;
@@ -49,4 +62,10 @@ body, html {
   position: absolute;
   bottom: 20px;
   right: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

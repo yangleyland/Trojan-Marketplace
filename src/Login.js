@@ -66,7 +66,7 @@ const StyledLogin = styled.div`
   }
 `;
 
-function Login() {
+function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -87,7 +87,8 @@ function Login() {
       
     console.log(response.data);
       if (response.data===true) {
-        navigate("/");
+        props.logIn();
+        navigate("/feed");
         console.log("true");
       } else {
         setError("Invalid username or password");

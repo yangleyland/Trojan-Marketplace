@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const StyledMessagingPage = styled.div`
-    background-color: white;
-    margin-top: 30px;
+  margin-top: 30px;
 `;
 
 const OuterContainer = styled.div`
@@ -55,7 +54,7 @@ const MessagesContainer = styled.div`
   background: #fff;
 
   .timestamp {
-    color: #AAAAAA;
+    color: #aaaaaa;
     width: 100%;
     text-align: center;
   }
@@ -67,7 +66,7 @@ const MessagesContainer = styled.div`
   }
 
   .message-received span {
-    background: #E6E6E6;
+    background: #e6e6e6;
     width: fit-content;
     padding: 10px;
     margin: 2px;
@@ -84,7 +83,7 @@ const MessagesContainer = styled.div`
     padding: 10px;
     margin: 2px;
     border-radius: 20px;
-    background: #FCC901;
+    background: #fcc901;
     margin-right: 0;
   }
 `;
@@ -107,7 +106,10 @@ const MessageInput = styled.input`
 `;
 
 const SendMessageButton = styled.button`
-  background-color: #007bff;
+  background-color: #304ffe;
+  :hover {
+    background-color: #536dfe;
+  }
   margin-top: 5px;
   color: #fff;
   padding: 8px 16px;
@@ -116,7 +118,7 @@ const SendMessageButton = styled.button`
   cursor: pointer;
 `;
 
-function MessagingPage() {
+function MessagingPage({ item }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
@@ -130,40 +132,40 @@ function MessagingPage() {
 
   return (
     <StyledMessagingPage>
-        <OuterContainer>
+      <OuterContainer>
         <InfoContainer>
           <div style={{ display: "flex", gap: "20px" }}>
             <SquareImage src={"/v3_87.png"} alt="couch" />
             <InfoDiv>
-              <NameText>Couch</NameText>
-              <SubText>Used couch, great condition</SubText>
+              <NameText>{item.item_name}</NameText>
+              <SubText>{item.item_description}</SubText>
               <SubText>Seller: Tommy T</SubText>
             </InfoDiv>
           </div>
         </InfoContainer>
-      <MessagesContainer>
-        <div class="timestamp">09:10 AM</div>
-        <div className="message-received">
-            <span>Hi, Tommy!</span>    
-        </div>
-        <div className="message-received">
-            <span>How are you?</span>    
-        </div>
-        {messages.map((message, index) => (
-          <div className="message-sent" key={index}>
-            <span>{message}</span>
+        <MessagesContainer>
+          <div class="timestamp">09:10 AM</div>
+          <div className="message-received">
+            <span>Hi, Tommy!</span>
           </div>
-        ))}
-      </MessagesContainer>
-      <MessageForm onSubmit={handleMessageSubmit}>
-        <MessageInput
-          type="text"
-          placeholder="Type your message here"
-          value={newMessage}
-          onChange={(event) => setNewMessage(event.target.value)}
-        />
-        <SendMessageButton type="submit">Send</SendMessageButton>
-      </MessageForm>
+          <div className="message-received">
+            <span>How are you?</span>
+          </div>
+          {messages.map((message, index) => (
+            <div className="message-sent" key={index}>
+              <span>{message}</span>
+            </div>
+          ))}
+        </MessagesContainer>
+        <MessageForm onSubmit={handleMessageSubmit}>
+          <MessageInput
+            type="text"
+            placeholder="Type your message here"
+            value={newMessage}
+            onChange={(event) => setNewMessage(event.target.value)}
+          />
+          <SendMessageButton type="submit">Send</SendMessageButton>
+        </MessageForm>
       </OuterContainer>
     </StyledMessagingPage>
   );

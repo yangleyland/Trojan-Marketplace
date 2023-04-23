@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Feed.css";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-function Feed({modifyItem}) {
+function Feed({ modifyItem }) {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
 
@@ -22,14 +23,18 @@ function Feed({modifyItem}) {
     fetchData();
   }, []);
 
-  function handlePurchase(index){
-    modifyItem(items[index])
+  function handlePurchase(index) {
+    modifyItem(items[index]);
     navigate("/purchase-item");
+  }
+  function handleMessage(index) {
+    modifyItem(items[index]);
+    navigate("/message");
   }
   return (
     <div className="rectangles-wrapper">
       <div className="rectangles-container">
-        {items.map((item,index) => (
+        {items.map((item, index) => (
           <div className="rectangle">
             <div className="rectangle-content">
               <div className="rectangle-img">
@@ -40,8 +45,12 @@ function Feed({modifyItem}) {
                 <p>{item.item_description}</p>
               </div>
             </div>
-            <div className="buy-now-btn">
-              <button onClick={()=>handlePurchase(index)}>Buy Now</button>
+            <div className="button-container">
+              <StyledButton onClick={() => handleMessage(index)}>Message</StyledButton>
+
+              <div className="buy-now-btn">
+                <button onClick={() => handlePurchase(index)}>Buy Now</button>
+              </div>
             </div>
           </div>
         ))}
@@ -49,5 +58,12 @@ function Feed({modifyItem}) {
     </div>
   );
 }
+const StyledButton = styled.button`
+  background-color: #304ffe;
+  :hover{
+    background-color:#536dfe;
+  }
+`
+
 
 export default Feed;

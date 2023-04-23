@@ -13,23 +13,32 @@ import CreateAccount from "./CreateAccount";
 
 const Main = (props) => {
   const [purchaseItem, setPurchaseItem] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
   function modifyItem(item) {
     setPurchaseItem(item);
+  }
+  function logIn() {
+    setLoggedIn(true);
   }
 
   return (
     <StyledMain>
-      <Navbar></Navbar>
+      <Navbar loggedIn={loggedIn}></Navbar>
+      <Background></Background>
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
-        <Route exact path="/login" element={<Login />}></Route>
+        <Route exact path="/login" element={<Login logIn={logIn} />}></Route>
         <Route exact path="/profile" element={<Profile />}></Route>
         <Route
           exact
           path="/feed"
           element={<Feed modifyItem={modifyItem} />}
         ></Route>
-        <Route exact path="/message" element={<Message />}></Route>
+        <Route
+          exact
+          path="/message"
+          element={<Message item={purchaseItem} />}
+        ></Route>
         <Route exact path="/create-sale" element={<CreateSale />}></Route>
         <Route
           exact
@@ -42,6 +51,16 @@ const Main = (props) => {
   );
 };
 
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://pbs.twimg.com/media/EU8GlrJWsAAZKHx?format=jpg&name=large);
+  background-size: cover;
+  z-index: -1;
+`;
 const StyledMain = styled.div`
   width: 100vw;
 `;

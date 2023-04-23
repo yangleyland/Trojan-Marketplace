@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -23,7 +23,9 @@ const StyledNavbar = styled.div`
     padding: 0;
     box-sizing: border-box;
   }
-
+  h1:hover {
+    color: black;
+  }
   body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -75,7 +77,7 @@ const NavPlaceHolder = styled.div`
   background-color: white;
 `;
 
-function Navbar() {
+function Navbar({loggedIn}) {
   return (
     <>
       <StyledNavbar>
@@ -93,28 +95,33 @@ function Navbar() {
               alt="USC logo"
               style={{ "object-fit": "contain" }}
             />
-            <h1>Trojan Marketplace</h1>
+            <h1>
+              <LinkHeader to="/">Trojan Marketplace</LinkHeader>
+            </h1>
           </div>
           <div className="nav-links">
-            <Link className="nav-link" to="/">Home</Link>
-            <Link className="nav-link" to="/login">
-              Login
-            </Link>
-            <Link className="nav-link" to="/message">
-              Message
-            </Link>
-            <Link className="nav-link" to="/profile">
-              Profile
-            </Link>
-            <Link className="nav-link" to="/purchase-item">
-              Purchase Item
-            </Link>
-            <Link className="nav-link" to="/create-sale">
-              Create Sale
-            </Link>
-            <Link className="nav-link" to="/feed">
-              Feed
-            </Link>
+            {loggedIn ? (
+              <>
+                <Link className="nav-link" to="/profile">
+                  Profile
+                </Link>
+                <Link className="nav-link" to="/create-sale">
+                  Create Sale
+                </Link>
+                <Link className="nav-link" to="/feed">
+                  Feed
+                </Link>
+                <Link className="nav-link" to="/login">
+                  Logged In
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </>
+            )}
           </div>
         </nav>
       </StyledNavbar>
@@ -122,4 +129,11 @@ function Navbar() {
     </>
   );
 }
+
+const LinkHeader = styled(Link)`
+  all: unset;
+  :hover {
+    color: gray;
+  }
+`;
 export default Navbar;
